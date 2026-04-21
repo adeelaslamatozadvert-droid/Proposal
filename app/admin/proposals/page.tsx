@@ -253,6 +253,29 @@ export default function AdminDashboard() {
       const selectedItems = proposalWithId.items.filter((item) =>
         proposalWithId.selectedItems.includes(item.id)
       );
+      const proposalTotal = getSelectedItemsTotal(
+        proposalWithId.selectedItems,
+        proposalWithId.items
+      );
+
+      setSaveMessage('Saving proposal to database...');
+
+      const saveResponse = await fetch('/api/proposals', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          proposal: proposalWithId,
+          company: selectedCompany,
+          total: proposalTotal,
+          customerEmail,
+        }),
+      });
+
+      const saveResult = await saveResponse.json();
+
+      if (!saveResponse.ok) {
+        throw new Error(saveResult?.error || 'Failed to save proposal to database');
+      }
 
       const htmlContent = generateProposalHTML(
         proposalWithId,
@@ -372,6 +395,12 @@ export default function AdminDashboard() {
               className="px-4 py-2 bg-orange-600 text-white rounded hover:bg-orange-700 text-sm"
             >
               🛍️ Services
+            </a>
+            <a
+              href="/admin/submitted-proposals"
+              className="px-4 py-2 bg-teal-600 text-white rounded hover:bg-teal-700 text-sm"
+            >
+              Submitted Proposals
             </a>
             <a
               href="/"

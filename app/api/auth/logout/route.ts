@@ -1,8 +1,10 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { AUTH_COOKIE_NAME } from '@/lib/auth';
 
-export async function POST() {
-  const response = NextResponse.json({ success: true });
+export async function POST(request: NextRequest) {
+  // Redirect after logout so the browser doesn't land on a JSON endpoint.
+  const redirectUrl = new URL('/login', request.url);
+  const response = NextResponse.redirect(redirectUrl, { status: 303 });
   response.cookies.set(AUTH_COOKIE_NAME, '', {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
