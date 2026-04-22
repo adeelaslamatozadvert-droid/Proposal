@@ -16,7 +16,7 @@ async function migrateDataToSupabase() {
   console.log('🚀 Starting data migration to Supabase...');
 
   // Step 1: Backup localStorage data
-  const backup = {
+  const backup: Record<string, string | null> = {
     timestamp: new Date().toISOString(),
     companies: localStorage.getItem('companies'),
     timestamp_backup: new Date().toISOString(),
