@@ -420,7 +420,7 @@ export default function AdminDashboard() {
         {/* Proposal ID & Actions */}
         <div className="mb-6 bg-white p-4 rounded-lg shadow flex justify-between items-center">
           <div>
-            <p className="text-sm text-gray-600">Proposal ID</p>
+            <p className="text-sm font-bold text-gray-600">Proposal ID</p>
             <p className="font-mono font-bold text-lg">{proposal.id}</p>
           </div>
           <div className="flex gap-2">
@@ -428,14 +428,14 @@ export default function AdminDashboard() {
               onClick={handleNewProposal}
               className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
             >
-              ➕ New Proposal
+              ✚ New Proposal
             </button>
-            <button
+            {/* <button
               onClick={handleExportProposal}
               className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
             >
               ⬇️ Export JSON
-            </button>
+            </button> */}
           </div>
         </div>
 
@@ -479,7 +479,7 @@ export default function AdminDashboard() {
             {/* Left: Edit Form */}
             <div className="lg:col-span-1 space-y-4">
               <div className="bg-white p-6 rounded-lg shadow">
-                <h2 className="text-lg font-bold mb-4">Company Branding</h2>
+                <h2 className="text-lg font-bold mb-4">Company</h2>
 
                 <div className="space-y-4">
                   <div>
@@ -494,7 +494,7 @@ export default function AdminDashboard() {
                       <div className="p-3 bg-yellow-50 border border-yellow-300 rounded text-sm text-yellow-800">
                         <p>No companies found. </p>
                         <a href="/admin/companies" className="text-blue-600 hover:underline font-medium">
-                          Create a company branding first
+                          Create a company first
                         </a>
                       </div>
                     ) : (

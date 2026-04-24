@@ -123,7 +123,7 @@ export default function SubmittedProposalsPage() {
         <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">Submitted Proposals</h1>
-            <p className="text-gray-600">Database-backed list with live status: accepted, rejected, submitted.</p>
+            <p className="text-gray-600">Proposals list with status: accepted, rejected, submitted.</p>
           </div>
           <Link
             href="/admin/proposals"
@@ -199,7 +199,7 @@ export default function SubmittedProposalsPage() {
                             void handleDeleteProposal(proposal.id);
                           }}
                           disabled={deletingId === proposal.id}
-                          className={`rounded px-3 py-1.5 text-xs font-medium text-white ${
+                          className={`rounded px-3 py-1.5 text-xs font-medium !text-white ${
                             deletingId === proposal.id
                               ? 'cursor-not-allowed bg-red-300'
                               : 'bg-red-600 hover:bg-red-700'

@@ -42,18 +42,12 @@ export default async function RootLayout({
                   <Link href="/" className="transition hover:text-slate-900">
                     Home
                   </Link>
-                  {/* <Link href="/proposal-maker" className="transition hover:text-slate-900">
-                    Proposal Maker
-                  </Link> */}
                   <Link href="/admin/proposals" className="transition hover:text-slate-900">
                     Send Proposal
                   </Link>
                   <Link href="/admin/submitted-proposals" className="transition hover:text-slate-900">
                     Submitted Proposals
                   </Link>
-                  {/* <Link href="/client/proposals" className="transition hover:text-slate-900">
-                    Client
-                  </Link> */}
                   <form action="/api/auth/logout" method="post" className="inline">
                     <button
                       type="submit"
