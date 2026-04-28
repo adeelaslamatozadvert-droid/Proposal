@@ -38,6 +38,19 @@ function ensureProposalId(proposal: Proposal): Proposal {
   };
 }
 
+function createFreshProposal(companyId = '', items: ProposalItem[] = DEFAULT_ITEMS): Proposal {
+  return {
+    id: generateProposalId(),
+    companyId,
+    clientName: '',
+    projectTitle: '',
+    selectedItems: [],
+    items,
+    paymentLink: '',
+    terms: DEFAULT_TERMS,
+  };
+}
+
 export default function AdminDashboard() {
   const { companies, loading: companiesLoading } = useCompanies();
   const [selectedCompanyId, setSelectedCompanyId] = useState<string>('');
@@ -198,17 +211,7 @@ export default function AdminDashboard() {
   const handleNewProposal = () => {
     if (confirm('Create a new proposal? Current changes will be saved.')) {
       const itemsToUse = selectedCompanyId ? companyServices : DEFAULT_ITEMS;
-
-      setProposal({
-        id: generateProposalId(),
-        companyId: selectedCompanyId || '',
-        clientName: '',
-        projectTitle: '',
-        selectedItems: [],
-        items: itemsToUse,
-        paymentLink: '',
-        terms: DEFAULT_TERMS,
-      });
+      setProposal(createFreshProposal(selectedCompanyId || '', itemsToUse));
     }
   };
 
@@ -357,7 +360,13 @@ export default function AdminDashboard() {
       const result = await response.json();
 
       if (response.ok) {
-        setTimedMessage(`✅ ${result.message}`, 5000);
+        const nextProposal = createFreshProposal(
+          selectedCompanyId || '',
+          selectedCompanyId ? companyServices : DEFAULT_ITEMS
+        );
+        setProposal(nextProposal);
+        setActiveTab('general');
+        setTimedMessage(`✅ ${result.message}. New proposal started.`, 5000);
         setCustomerEmail('');
       } else {
         setTimedMessage(`❌ ${result.error || 'Failed to send proposal'}`, 5000);
