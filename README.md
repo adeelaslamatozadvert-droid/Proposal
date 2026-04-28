@@ -1,43 +1,32 @@
 # Proposal Maker
 
-A clean React application for managing business proposals, company brandings, service items, and client-facing proposal views.
+Proposal Maker is a Next.js admin tool for managing companies, services, draft proposals, sent proposals, and client response flows on top of Supabase.
 
-## Features
+## What it does
 
-- Create proposals with custom services and pricing
-- Manage multiple company profiles and branding data
-- View proposals in a client-ready format
-- Export proposals to Google Sheets via API
-- Print or save proposals as PDF-ready documents
+- Secure admin login with hashed password verification and signed session cookies
+- Company branding management with logo, website, registration number, and social links
+- Company-specific service catalogs
+- Proposal drafting, preview, PDF generation, and email sending
+- Submitted proposal tracking with accept / decline / payment-pending flows
+- Supabase-backed storage for companies, services, drafts, and proposals
 
-## Getting Started
+## Project docs
 
-1. Install dependencies:
+- [QUICKSTART.md](/d:/Development%20and%20Plugin%20Projects/Proposal/QUICKSTART.md)
+- [SETUP.md](/d:/Development%20and%20Plugin%20Projects/Proposal/SETUP.md)
+- [SUPABASE_MIGRATIONS.md](/d:/Development%20and%20Plugin%20Projects/Proposal/SUPABASE_MIGRATIONS.md)
 
-```bash
-npm install
-```
+## Main routes
 
-2. Start the development server:
+- `/login`
+- `/admin/proposals`
+- `/admin/companies`
+- `/admin/services`
+- `/admin/submitted-proposals`
 
-```bash
-npm run dev
-```
+## Tech notes
 
-3. Open the app at:
-
-```bash
-http://localhost:3000
-```
-
-## Key Pages
-
-- `/` — Home dashboard
-- `/admin/proposals` — Admin proposal editor
-- `/admin/companies` — Company branding manager
-- `/admin/services` — Service management
-
-## Notes
-
-- Google Sheets export requires `GOOGLE_SHEETS_API_KEY` and `GOOGLE_SHEETS_ID` in `.env.local`
-- Proposal and company data are stored locally in the browser via `localStorage`
+- App Router project on Next.js 16
+- Data APIs use Supabase via server-side route handlers
+- Some client views keep short-lived in-memory caches for faster page switching

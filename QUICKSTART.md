@@ -1,58 +1,40 @@
-# Proposal Maker Quick Start
+# Quick Start
 
-This app includes a proposal creation workflow with Google Sheets export support.
-
-## 🚀 Quick Start
-
-### 1. Install dependencies
+## 1. Install and run
 
 ```bash
 npm install
-```
-
-### 2. Start the development server
-
-```bash
 npm run dev
 ```
 
-### 3. Open the app
+Open `http://localhost:3000`.
 
-Visit:
+## 2. Configure local environment
 
-```bash
-http://localhost:3000
+Set these values in `.env.local`:
+
+```env
+ADMIN_USERNAME="admin"
+ADMIN_PASSWORD_HASH="scrypt$replace-with-salt$replace-with-hash"
+AUTH_SESSION_SECRET="replace-with-a-random-secret"
+NEXT_PUBLIC_SUPABASE_URL="your-supabase-url"
+NEXT_PUBLIC_SUPABASE_ANON_KEY="your-supabase-anon-key"
+SUPABASE_SERVICE_ROLE_KEY="your-supabase-service-role-key"
 ```
 
-### 4. Set up Google Sheets export (optional)
+SMTP settings are optional for local testing. Without them, the app can still be used for editing and preview workflows.
 
-1. Create a Google Sheets API key in Google Cloud Console
-2. Create a `.env.local` file
-3. Add:
-   ```env
-   GOOGLE_SHEETS_API_KEY=your_key_here
-   GOOGLE_SHEETS_ID=your_sheet_id_here
-   ```
+## 3. Apply database migrations
 
-### 5. Use the app
+Make sure all SQL files in `supabase/migrations` are applied to the active database. See [SUPABASE_MIGRATIONS.md](/d:/Development%20and%20Plugin%20Projects/Proposal/SUPABASE_MIGRATIONS.md).
 
-- `/admin/proposals` — admin proposal editor
-- `/admin/companies` — company branding management
-- `/admin/services` — service item management
+## 4. Sign in
 
----
+Use the `ADMIN_USERNAME` value and the password that matches your `ADMIN_PASSWORD_HASH`.
 
-## Notes
+## 5. Use the app
 
-- Proposal and company data are stored locally in the browser using `localStorage`
-- Google Sheets export requires a configured API key and sheet ID
-
-## Resources
-
-- [Google Sheets API](https://developers.google.com/sheets/api)
-- [Tailwind CSS](https://tailwindcss.com/docs)
-- [React Docs](https://react.dev)
-
----
-
-Happy building! 🎉
+- Add companies in `/admin/companies`
+- Add services in `/admin/services`
+- Build and send proposals in `/admin/proposals`
+- Review sent proposals in `/admin/submitted-proposals`

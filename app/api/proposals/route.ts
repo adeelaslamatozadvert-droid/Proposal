@@ -20,7 +20,7 @@ export async function GET() {
     const supabase = getSupabaseAdminClient();
 
     // Keep list payload light: exclude heavy fields like pdf_base64.
-    const listColumns = [
+    const baseListColumns = [
       "id",
       "company_id",
       "client_name",
@@ -38,10 +38,21 @@ export async function GET() {
       "company",
     ].join(", ");
 
-    const { data, error } = await supabase
+    const listColumnsWithResponseAt = `${baseListColumns}, response_at`;
+
+    let queryResult = await supabase
       .from("proposals")
-      .select(listColumns)
+      .select(listColumnsWithResponseAt)
       .order("submitted_at", { ascending: false });
+
+    if (queryResult.error?.message?.includes("response_at")) {
+      queryResult = await supabase
+        .from("proposals")
+        .select(baseListColumns)
+        .order("submitted_at", { ascending: false });
+    }
+
+    const { data, error } = queryResult;
 
     if (error) {
       return NextResponse.json({ error: error.message }, { status: 500 });

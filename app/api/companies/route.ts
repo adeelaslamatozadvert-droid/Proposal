@@ -7,7 +7,16 @@ type CreateCompanyPayload = {
   mobileNumber?: string;
   whatsapp?: string;
   address?: string;
+  registrationNumber?: string;
+  website?: string;
   currency?: string;
+  replyToEmail?: string;
+  instagram?: string;
+  linkedin?: string;
+  twitter?: string;
+  facebook?: string;
+  youtube?: string;
+  pinterest?: string;
   logo?: string;
   id?: string;
 };
@@ -19,7 +28,16 @@ type CompanyRow = {
   mobile_number: string | null;
   whatsapp: string | null;
   address: string | null;
+  registration_number: string | null;
+  website: string | null;
   currency: string | null;
+  reply_to_email: string | null;
+  instagram: string | null;
+  linkedin: string | null;
+  twitter: string | null;
+  facebook: string | null;
+  youtube: string | null;
+  pinterest: string | null;
   logo: string | null;
   created_at: string;
   updated_at: string;
@@ -69,7 +87,16 @@ export async function GET() {
       mobileNumber: company.mobile_number,
       whatsapp: company.whatsapp,
       address: company.address,
+      registrationNumber: company.registration_number,
+      website: company.website,
       currency: company.currency || "USD",
+      replyToEmail: company.reply_to_email,
+      instagram: company.instagram,
+      linkedin: company.linkedin,
+      twitter: company.twitter,
+      facebook: company.facebook,
+      youtube: company.youtube,
+      pinterest: company.pinterest,
       logo: company.logo,
       createdAt: company.created_at,
       updatedAt: company.updated_at,
@@ -101,7 +128,16 @@ export async function POST(request: NextRequest) {
       mobileNumber,
       whatsapp,
       address,
+      registrationNumber,
+      website,
       currency = "USD",
+      replyToEmail,
+      instagram,
+      linkedin,
+      twitter,
+      facebook,
+      youtube,
+      pinterest,
       logo,
     } = body;
 
@@ -124,7 +160,16 @@ export async function POST(request: NextRequest) {
         mobile_number: mobileNumber,
         whatsapp,
         address,
+        registration_number: registrationNumber,
+        website,
         currency,
+        reply_to_email: replyToEmail,
+        instagram,
+        linkedin,
+        twitter,
+        facebook,
+        youtube,
+        pinterest,
         logo,
       })
       .select()
@@ -141,7 +186,16 @@ export async function POST(request: NextRequest) {
       mobileNumber: data.mobile_number,
       whatsapp: data.whatsapp,
       address: data.address,
+      registrationNumber: data.registration_number,
+      website: data.website,
       currency: data.currency,
+      replyToEmail: data.reply_to_email,
+      instagram: data.instagram,
+      linkedin: data.linkedin,
+      twitter: data.twitter,
+      facebook: data.facebook,
+      youtube: data.youtube,
+      pinterest: data.pinterest,
       logo: data.logo,
       createdAt: data.created_at,
       updatedAt: data.updated_at,
@@ -169,7 +223,16 @@ export async function PUT(request: NextRequest) {
       mobileNumber,
       whatsapp,
       address,
+      registrationNumber,
+      website,
       currency,
+      replyToEmail,
+      instagram,
+      linkedin,
+      twitter,
+      facebook,
+      youtube,
+      pinterest,
       logo,
     } = body;
 
@@ -187,7 +250,16 @@ export async function PUT(request: NextRequest) {
         mobile_number: mobileNumber,
         whatsapp,
         address,
+        registration_number: registrationNumber,
+        website,
         currency,
+        reply_to_email: replyToEmail,
+        instagram,
+        linkedin,
+        twitter,
+        facebook,
+        youtube,
+        pinterest,
         logo,
       })
       .eq("id", id)
@@ -205,7 +277,16 @@ export async function PUT(request: NextRequest) {
       mobileNumber: data.mobile_number,
       whatsapp: data.whatsapp,
       address: data.address,
+      registrationNumber: data.registration_number,
+      website: data.website,
       currency: data.currency,
+      replyToEmail: data.reply_to_email,
+      instagram: data.instagram,
+      linkedin: data.linkedin,
+      twitter: data.twitter,
+      facebook: data.facebook,
+      youtube: data.youtube,
+      pinterest: data.pinterest,
       logo: data.logo,
       createdAt: data.created_at,
       updatedAt: data.updated_at,
